@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Error = ({ setHeaderStatus }) => {
   setHeaderStatus("not visible");
   const _700 = useMediaQuery("(min-width: 700px)");
+  const _502 = useMediaQuery("(min-width:502px)");
   return (
     <>
       <Stack
@@ -16,18 +17,17 @@ const Error = ({ setHeaderStatus }) => {
         sx={{}}
       >
         <Stack
-          p={5}
-          bgcolor="green"
+          p={_700 ? 5 : 3}
           mt={15}
           flexDirection={"column"}
           alignItems={"center"}
           borderRadius={"10px"}
           gap={5}
         >
-          <Typography sx={{ fontSize: _700 ? "4vw" : "3vw" }} variant="h3">
+          <Typography sx={{ fontSize: _700 ? "3vw" : "3.5vw" }} variant="h3">
             Sorry, this page isn't available
           </Typography>
-          <Typography sx={{ fontSize: _700 ? "2.5vw" : "2.5vw" }} variant="h4">
+          <Typography sx={{ fontSize: _700 ? "2vw" : "2.5vw" }} variant="h4">
             The link you followed may be broken , or the page may have been
             removed.
           </Typography>
@@ -36,7 +36,7 @@ const Error = ({ setHeaderStatus }) => {
               href="/"
               size={_700 ? "large" : "small"}
               sx={{
-                fontSize: _700 ? "2.4vw" : "2vw",
+                fontSize: _700 ? "1.5vw" : "2vw",
                 p: _700 ? 2 : 1.5,
                 bgcolor: "blue",
                 color: "white",
