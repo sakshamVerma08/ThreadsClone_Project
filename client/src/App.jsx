@@ -11,6 +11,7 @@ import Profilelayout from "./Pages/Protected/Profile/Profilelayout";
 import Threads from "./Pages/Protected/Profile/Threads";
 import Replies from "./Pages/Protected/Profile/Replies";
 import Repost from "./Pages/Protected/Profile/Repost";
+import SinglePost from "./Pages/Protected/SinglePost";
 const App = () => {
   const [headerStatus, setHeaderStatus] = useState("visible");
   return (
@@ -20,13 +21,14 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<Protectedlayout />}>
               <Route exact path="" element={<Home />} />
-              <Route exact path="post/:id" element={<h1>This is a post</h1>} />
+              <Route exact path="post/:id" element={<SinglePost />} />
               <Route exact path="search" element={<Search />} />
               <Route exact path="profile" element={<Profilelayout />}>
                 <Route exact path="threads/:id" element={<Threads />} />
                 <Route exact path="replies/:id" element={<Replies />} />
                 <Route exact path="repost/:id" element={<Repost />} />
               </Route>
+              <Route exact path="/register" element={<Register />} />
             </Route>
 
             <Route

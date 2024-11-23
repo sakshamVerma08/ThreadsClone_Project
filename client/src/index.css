@@ -61,4 +61,6 @@ body {
 
 #profileContainer {
   min-height: 88.25vh;
+  padding: 5vh 25vw;
+  width: 100%;
 }
