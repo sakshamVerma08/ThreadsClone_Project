@@ -14,7 +14,7 @@ const Post = () => {
         p={2}
         mx={"auto"}
         borderBottom={"2px solid grey"}
-        width="70%"
+        width="80%"
         sx={{
           ":hover": {
             cursor: "pointer",

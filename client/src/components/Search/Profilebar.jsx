@@ -1,12 +1,21 @@
-import { Avatar, Button, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import Followbutton from "./Followbutton";
 
 const Profilebar = () => {
+  const _700 = useMediaQuery("(min-width:700px)");
+
   return (
     <>
       <Stack
         flexDirection={"row"}
+        bgcolor={"antiquewhite"}
         justifyContent={"space-between"}
         mx={"auto"}
         px={1}
@@ -14,6 +23,7 @@ const Profilebar = () => {
         borderRadius={"15px"}
         width={"100%"}
         sx={{
+          m: 2,
           ":hover": {
             cursor: "pointer",
           },
@@ -25,7 +35,13 @@ const Profilebar = () => {
             <Typography variant="h5" fontWeight={"bold"} fontSize={"1rem"}>
               Saksham Verma
             </Typography>
-            <Typography variant="caption" fontSize={"1.1rem"} color="grey">
+            <Typography
+              variant="caption"
+              bgcolor={"skyblue"}
+              fontSize={"1vw"}
+              color="grey"
+              sx={{}}
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius,
               odio.
             </Typography>
@@ -35,25 +51,6 @@ const Profilebar = () => {
             </Typography>
           </Stack>
         </Stack>
-
-        {/* <Button
-          
-          variant="outlined"
-          size="medium"
-          sx={{
-            border: "1px solid grey",
-            zIndex: 1,
-            color: "#000",
-            borderRadius: "10px",
-            p: 2,
-            height: 40,
-            ":hover": {
-              color: "white",
-            },
-          }}
-        >
-          Follow
-        </Button> */}
         <Followbutton />
       </Stack>
     </>

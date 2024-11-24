@@ -1,17 +1,27 @@
-import { Avatar, AvatarGroup, Button, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  AvatarGroup,
+  Button,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import { FaInstagram } from "react-icons/fa";
 import { CgInsights } from "react-icons/cg";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useMatch } from "react-router-dom";
 import Threads from "./Threads";
 import Replies from "./Replies";
 import Repost from "./Repost";
 
 const Profilelayout = () => {
+  const _768 = useMediaQuery("(min-width:768)");
+  const _615 = useMediaQuery("(min-width:615px)");
+  const _300 = useMediaQuery("(min-width:300px)");
   return (
     <div id="profileContainer">
       <Stack
-        //  bgcolor={"red"}
+        bgcolor={"antiquewhite"}
         minHeight={"10vh"}
         p={3}
         flexDirection={"column"}
@@ -19,20 +29,25 @@ const Profilelayout = () => {
         justifyContent={"space-between"}
         alignItems={"flex-start"}
       >
+        {/*first row starts*/}
         <Stack
           id="firstRow"
           flexDirection={"row"}
           justifyContent={"space-between"}
           alignItems={"center"}
-          // bgcolor="purple"
           width={"100%"}
         >
-          <Stack flexDirection={"column"} fontWeight={500} gap={1}>
-            <h1>Saksham Verma</h1>
+          <Stack
+            flexDirection={"column"}
+            fontWeight={500}
+            sx={{ marginRight: _615 ? "" : "20px" }}
+            gap={1}
+          >
+            {_768 ? <h1>Saksham Verma</h1> : <h2>Saksham Verma</h2>}
             <span>sakshamxx2769</span>
           </Stack>
 
-          <Avatar sx={{ scale: 2 }} />
+          <Avatar sx={{ scale: _768 ? 2 : 1.5 }} />
         </Stack>
         {/* first row ends*/}
 
@@ -64,13 +79,11 @@ const Profilelayout = () => {
           </Stack>
 
           <Stack
-            //bgcolor="maroon"
             flexDirection={"row"}
             gap={2}
             justifyContent={"space-between"}
             alignItems={"center"}
           >
-            <CgInsights size={35} />
             <FaInstagram size={35} />
           </Stack>
         </Stack>
@@ -98,6 +111,7 @@ const Profilelayout = () => {
         {/* Third Row Ends*/}
         <Stack
           id="fourthRow"
+          bgcolor={"red"}
           flexDirection={"row"}
           alignItems={"center"}
           justifyContent={"space-around"}

@@ -1,15 +1,16 @@
-import { Input, InputAdornment, TextField } from "@mui/material";
+import { Input, InputAdornment, TextField, useMediaQuery } from "@mui/material";
 import { FaSearch } from "react-icons/fa";
 
 import React from "react";
 
 const SearchInput = () => {
+  const _738 = useMediaQuery("(min-width:738px)");
   return (
     <>
       <TextField
         sx={{
           width: "100%",
-          maxWidth: "750px",
+          maxWidth: _738 ? "60%" : "",
           boxShadow: "5px 5px 5px grey",
           borderRadius: "15px",
           border: "1px solid #000",

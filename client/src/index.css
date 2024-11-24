@@ -27,7 +27,7 @@ body {
   z-index: 2;
   padding: 2;
   width: 10%;
-  height: 45px;
+  height: 35px;
   overflow: hidden;
 }
 
@@ -63,4 +63,10 @@ body {
   min-height: 88.25vh;
   padding: 5vh 25vw;
   width: 100%;
+}
+
+@media (max-width: 539px) {
+  .link {
+    
+  }
 }
