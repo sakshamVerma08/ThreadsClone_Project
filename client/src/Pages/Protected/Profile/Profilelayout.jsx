@@ -23,7 +23,7 @@ const Profilelayout = () => {
   return (
     <div id="profileContainer">
       <Stack
-         bgcolor={"crimson"}
+        //  bgcolor={"crimson"}
         minHeight={"10vh"}
         width={_539 ? "100%" : "95%"}
         p={3}

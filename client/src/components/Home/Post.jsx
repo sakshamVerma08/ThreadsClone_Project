@@ -7,10 +7,11 @@ import PostTwo from "./Post/PostTwo";
 
 const Post = () => {
   const _539 = useMediaQuery("(min-width:539px)");
+  const _525 = useMediaQuery("(min-width:525px)");
   return (
     <>
       <Stack
-        bgcolor={'blue'}
+        // bgcolor={"blue"}
         flexDirection={"row"}
         justifyContent={"space-between"}
         p={2}
@@ -29,6 +30,7 @@ const Post = () => {
           <PostOne />
           <PostTwo />
         </Stack>
+
         <Stack
           flexDirection={"row"}
           justifyContent={"center"}
@@ -39,6 +41,7 @@ const Post = () => {
             variant={"caption"}
             color={"GrayText"}
             fontSize={"1rem"}
+            // bgcolor={'red'}
             positionn={"relative"}
             top={2}
           >

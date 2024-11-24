@@ -13,9 +13,16 @@ const PostTwo = () => {
         flexDirection={"column"}
         justifyContent={"space-between"}
         // bgcolor={"green"}
+        gap={_682 ? 0 : 1}
+        width={_682 ? "90%" : "50%"}
       >
-        <Stack flexDirection={"column"} bgcolor={'pink'} gap={2}
-        height = {_682? "75%" : "auto"}>
+        <Stack
+          flexDirection={"column"}
+          // bgcolor={"pink"}
+          gap={2}
+          width={_682 ? "90%" : "80%"}
+          height={_682 ? "auto" : "90%"}
+        >
           {/* Post Title and description 'stack' starts here*/}
           <Stack flexDirection={"column"}>
             <Typography fontSize={"1.1rem"} fontWeight={500}>

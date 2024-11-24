@@ -18,20 +18,20 @@ const Navbar = () => {
         alignItems={"center"}
       >
         <Link to="/">
-          <AiFillHome size={32} />
+          <AiFillHome size={32} color={"#000"} />
         </Link>
         <Link to="/search">
-          <IoSearch size={32} />
+          <IoSearch size={32} color={"#000"} />
         </Link>
         <Link to="/">
           {" "}
-          <TbEdit size={32} />
+          <TbEdit size={32} color={"#000"} />
         </Link>
         <Link to="/">
-          <FaHeart size={32} />
+          <FaHeart size={32} color={"#000"} />
         </Link>
         <Link to="/profile/threads/1">
-          <CgProfile size={32} />
+          <CgProfile size={32} color={"#000"} />
         </Link>
       </Stack>
     </>
