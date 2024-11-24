@@ -15,7 +15,7 @@ const Profilebar = () => {
     <>
       <Stack
         flexDirection={"row"}
-        bgcolor={"antiquewhite"}
+        // bgcolor={"antiquewhite"}
         justifyContent={"space-between"}
         mx={"auto"}
         px={1}
@@ -29,24 +29,27 @@ const Profilebar = () => {
           },
         }}
       >
-        <Stack flexDirection={"row"} gap={2}>
+        <Stack flexDirection={"row"} width={_700 ? "80%" : "90%"} gap={2}>
           <Avatar sx={{ width: 47, height: 47 }} src="" alt="" />
           <Stack flexDirection={"column"} gap={1}>
-            <Typography variant="h5" fontWeight={"bold"} fontSize={"1rem"}>
+            <Typography
+              variant="h5"
+              fontWeight={"bold"}
+              fontSize={_700 ? "1rem" : "0.8rem"}
+            >
               Saksham Verma
             </Typography>
             <Typography
               variant="caption"
-              bgcolor={"skyblue"}
-              fontSize={"1vw"}
+              // bgcolor={"skyblue"}
+              fontSize={_700 ? "1.1rem" : "0.75rem"}
               color="grey"
-              sx={{}}
             >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius,
               odio.
             </Typography>
 
-            <Typography variant="caption" fontSize={"1rem"}>
+            <Typography variant="caption" fontSize={_700 ? "1rem" : "0.9rem"}>
               10 Followers
             </Typography>
           </Stack>

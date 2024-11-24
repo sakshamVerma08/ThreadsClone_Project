@@ -21,6 +21,7 @@ body {
 .followButton {
   position: relative;
   border: 1px solid grey;
+  cursor: pointer;
   border-radius: 10px;
   height: auto;
   margin: 1;
@@ -33,7 +34,7 @@ body {
 
 .followButton span {
   color: #000;
-  font-size: 15px;
+  font-size: 0.9rem;
   position: relative;
   z-index: 2;
   font-weight: 500;
@@ -71,5 +72,15 @@ body {
   }
 }
 
-/* @media (min-width: 973px) {
-} */
+@media (max-width: 832px) {
+  .followButton span {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .followButton span {
+    font-size: 10px;
+    padding: 0;
+  }
+}

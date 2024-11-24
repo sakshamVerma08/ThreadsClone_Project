@@ -12,7 +12,7 @@ const Comments = () => {
         flexDirection={"row"}
         justifyContent={"space-between"}
         mx={"auto"}
-        bgcolor={"blue"}
+        // bgcolor={"blue"}
         width={"50vw"}
         pb={4}
         px={2}

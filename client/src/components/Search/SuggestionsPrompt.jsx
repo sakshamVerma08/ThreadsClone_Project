@@ -1,7 +1,8 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 
 const SuggestionsPrompt = () => {
+  const _700 = useMediaQuery("(min-width:700px)");
   return (
     <>
       <Stack
@@ -9,7 +10,9 @@ const SuggestionsPrompt = () => {
         justifyContent={"flex-start"}
         alignItems={"center"}
       >
-        <Typography color={"grey"}>Follow Suggestions</Typography>
+        <Typography fontSize={_700 ? "1rem" : "0.8rem"} color={"grey"}>
+          Follow Suggestions
+        </Typography>
       </Stack>
     </>
   );
