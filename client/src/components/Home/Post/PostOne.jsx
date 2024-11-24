@@ -8,6 +8,8 @@ const PostOne = () => {
         flexDirection={"column"}
         justifyContent={"space-between"}
         alignItems={"center"}
+        // bgcolor={"pink"}
+        ml={0}
       >
         <Badge
           overlap="circular"
@@ -19,7 +21,6 @@ const PostOne = () => {
               sx={{
                 height: 20,
                 width: 20,
-                bgcolor: "green",
                 position: "relative",
                 right: 4,
                 bottom: 4,
@@ -33,6 +34,7 @@ const PostOne = () => {
           <Avatar alt="SV" src="" sx={{ width: 40, height: 40 }} />
         </Badge>
 
+        {/* Long line in Post */}
         <Stack
           flexDirection={"column"}
           gap={2}
@@ -44,7 +46,7 @@ const PostOne = () => {
             activeStep={0}
             sx={{ width: "0px", height: "100%", border: "0.1rem solid grey" }}
           ></Stepper>
-
+          {/* Profile symbols at bottom of post*/}
           <AvatarGroup
             total={3}
             sx={{
@@ -57,6 +59,7 @@ const PostOne = () => {
           >
             <Avatar src="" alt=""></Avatar>
           </AvatarGroup>
+          {/* end of profile symbols*/}
         </Stack>
       </Stack>
     </>

@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, useMediaQuery } from "@mui/material";
 import { IoIosMenu } from "react-icons/io";
 
 import React from "react";
@@ -6,15 +6,17 @@ import PostOne from "./Post/PostOne";
 import PostTwo from "./Post/PostTwo";
 
 const Post = () => {
+  const _539 = useMediaQuery("(min-width:539px)");
   return (
     <>
       <Stack
+        bgcolor={'blue'}
         flexDirection={"row"}
         justifyContent={"space-between"}
         p={2}
         mx={"auto"}
         borderBottom={"2px solid grey"}
-        width="80%"
+        width="100%"
         sx={{
           ":hover": {
             cursor: "pointer",

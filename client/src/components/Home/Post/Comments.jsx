@@ -8,6 +8,8 @@ const Comments = () => {
   const _768 = useMediaQuery("(min-width:768px)");
   const _621 = useMediaQuery("(min-width:621px)");
   const _567 = useMediaQuery("(min-width:567px)");
+  const _480 = useMediaQuery("(max-width: 480px)");
+  const _425 = useMediaQuery("(min-width: 425px)");
 
   return (
     <>
@@ -34,11 +36,18 @@ const Comments = () => {
               Rishab
             </Typography>
             <Typography
-              // bgcolor={"skyblue"}
-              sx={{ width: "85%", marginTop: 3 }}
+              sx={{ width: _480 ? "100%" : "85%", marginTop: 3 }}
               variant="subtitle2"
               fontSize={
-                _768 ? "0.9rem" : _621 ? "0.7rem" : _567 ? "0.6rem" : "10px"
+                _768
+                  ? "0.9rem"
+                  : _621
+                  ? "0.7rem"
+                  : _567
+                  ? "0.6rem"
+                  : _425
+                  ? "8px"
+                  : "10px"
               }
             >
               Congratulations on the Project Completion.
@@ -48,7 +57,7 @@ const Comments = () => {
 
         <Stack
           color="grey"
-          // bgcolor={"royalblue"}
+          height={"50%"}
           flexDirection={"row"}
           alignItems={"center"}
           gap={2}
