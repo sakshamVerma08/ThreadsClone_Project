@@ -17,12 +17,15 @@ import Repost from "./Repost";
 const Profilelayout = () => {
   const _768 = useMediaQuery("(min-width:768)");
   const _615 = useMediaQuery("(min-width:615px)");
-  const _300 = useMediaQuery("(min-width:300px)");
+  const _539 = useMediaQuery("(min-width:539px)");
+  const _529 = useMediaQuery("(min-width: 529px)");
+  const _300 = useMediaQuery("(max-width:300px)");
   return (
     <div id="profileContainer">
       <Stack
-        bgcolor={"antiquewhite"}
+        // bgcolor={"crimson"}
         minHeight={"10vh"}
+        width={_539 ? "100%" : "95%"}
         p={3}
         flexDirection={"column"}
         gap={3}
@@ -42,8 +45,10 @@ const Profilelayout = () => {
             fontWeight={500}
             sx={{ marginRight: _615 ? "" : "20px" }}
             gap={1}
+            fontSize={_529 ? "100 %" : "2vw"}
           >
-            {_768 ? <h1>Saksham Verma</h1> : <h2>Saksham Verma</h2>}
+            {/* {_768 ? <h1>Saksham Verma</h1> : <h2>Saksham Verma</h2>} */}
+            <h1>Saksham Verma</h1>
             <span>sakshamxx2769</span>
           </Stack>
 
@@ -68,7 +73,7 @@ const Profilelayout = () => {
           alignItems={"center"}
         >
           <Stack flexDirection={"row"} alignItems={"center"} gap={1}>
-            <AvatarGroup max={2} bgcolor="green">
+            <AvatarGroup max={2}>
               <Avatar sx={{ width: 20, height: 20 }} src="" alt="" />
               <Avatar sx={{ width: 20, height: 20 }} src="" alt="" />
             </AvatarGroup>
@@ -84,16 +89,15 @@ const Profilelayout = () => {
             justifyContent={"space-between"}
             alignItems={"center"}
           >
-            <FaInstagram size={35} />
+            <FaInstagram size={_300 ? "" : "2.5vw"} />
           </Stack>
         </Stack>
         {/*second row ends*/}
         <Stack id="thirdRow" width={"100%"}>
           <Button
-            size="large"
+            size={_768 ? "large" : "medium"}
             sx={{
-              backgroundColor: "#fff",
-              width: "100%",
+              width: _768 ? "100%" : "90%",
               borderRadius: "12px",
               border: "1px solid grey",
               ":hover": {
@@ -111,7 +115,6 @@ const Profilelayout = () => {
         {/* Third Row Ends*/}
         <Stack
           id="fourthRow"
-          bgcolor={"red"}
           flexDirection={"row"}
           alignItems={"center"}
           justifyContent={"space-around"}

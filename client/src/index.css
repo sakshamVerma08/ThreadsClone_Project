@@ -67,6 +67,6 @@ body {
 
 @media (max-width: 539px) {
   .link {
-    
+    font-size: 3vw;
   }
 }
