@@ -6,27 +6,28 @@ import PostOne from "./Post/PostOne";
 import PostTwo from "./Post/PostTwo";
 
 const Post = () => {
-  const _539 = useMediaQuery("(min-width:539px)");
-  const _525 = useMediaQuery("(min-width:525px)");
+  const _300 = useMediaQuery("(min-width:300px)");
+  const _400 = useMediaQuery("(min-width:400px)");
+  const _700 = useMediaQuery("(min-width:700px)");
   return (
     <>
       <Stack
         // bgcolor={"blue"}
         flexDirection={"row"}
         justifyContent={"space-between"}
-        p={2}
+        p={_700 ? 2 : _400 ? 1 : "5px"}
         mx={"auto"}
         borderBottom={"2px solid grey"}
-        width="100%"
+        width={_700 ? "70%" : _300 ? "90%" : "100%"}
         sx={{
           ":hover": {
             cursor: "pointer",
-            boxShadow: "10px 10px 10px grey",
+            boxShadow: _700 ? "10px 10px 10px grey" : "",
           },
           transition: "all ease-in-out 0.3s",
         }}
       >
-        <Stack gap={3} flexDirection={"row"}>
+        <Stack gap={_700 ? 2 : 1} flexDirection={"row"}>
           <PostOne />
           <PostTwo />
         </Stack>
@@ -47,7 +48,7 @@ const Post = () => {
           >
             24h
           </Typography>
-          <IoIosMenu size={28} />
+          <IoIosMenu size={_700 ? 28 : 20} />
         </Stack>
       </Stack>
     </>

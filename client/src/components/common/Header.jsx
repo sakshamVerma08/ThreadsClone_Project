@@ -11,7 +11,7 @@ const Header = () => {
     <>
       {_700 ? (
         <Stack
-          bgcolor={"red"}
+          // bgcolor={"red"}
           flexDirection={"row"}
           mt={2}
           mb={4}
@@ -45,7 +45,9 @@ const Header = () => {
             height={52}
             p={1}
             zIndex={2}
-          ></Stack>
+          >
+            <Navbar />
+          </Stack>
           <Grid2
             container
             // bgcolor={"red"}
@@ -56,14 +58,17 @@ const Header = () => {
             p={1}
           >
             <div></div>
-            <Grid2 item xs={6}>
-              <img
-                src="/Threads-logo-white-bg.png"
-                alt="logo"
-                height={35}
-                width={60}  
-              />
-            </Grid2>
+              {" "}
+              <Grid2 xs={6}>
+                <img
+                  src="/Threads-logo-white-bg.png"
+                  alt="logo"
+                  height={35}
+                  width={60}
+                />
+              </Grid2>
+          
+
             <CiMenuFries size={36} className="image-icon" color={"grey"} />
           </Grid2>
         </>

@@ -4,24 +4,26 @@ import { IoMdSend } from "react-icons/io";
 import React from "react";
 
 const PostTwo = () => {
-  const _973 = useMediaQuery("(min-width:973px)");
-  const _872 = useMediaQuery("(min-width:872px)");
-  const _682 = useMediaQuery("(min-width:682px)");
+  const _300 = useMediaQuery("(min-width:300px)");
+  const _400 = useMediaQuery("(min-width:400px)");
+  const _500 = useMediaQuery("(min-width:500px)");
+  const _700 = useMediaQuery("(min-width:700px)");
+
   return (
     <>
       <Stack
         flexDirection={"column"}
         justifyContent={"space-between"}
         // bgcolor={"green"}
-        gap={_682 ? 0 : 1}
-        width={_682 ? "90%" : "50%"}
+        gap={1}
+        width={"90%"}
       >
         <Stack
           flexDirection={"column"}
           // bgcolor={"pink"}
           gap={2}
-          width={_682 ? "90%" : "80%"}
-          height={_682 ? "auto" : "90%"}
+          width={"90%"}
+          height={"90%"}
         >
           {/* Post Title and description 'stack' starts here*/}
           <Stack flexDirection={"column"}>
@@ -38,8 +40,8 @@ const PostTwo = () => {
           <img
             src="/error-bg.png"
             alt="Post Image"
-            width={_973 ? "380px" : _872 ? "350px" : _682 ? "" : "66%"}
-            height={_682 ? "100%" : "auto"}
+            width={"66%"}
+            height={"auto"}
           />
         </Stack>
         {/* Like / share icons 'stack' starts here*/}

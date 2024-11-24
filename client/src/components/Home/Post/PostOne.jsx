@@ -1,7 +1,16 @@
-import { Avatar, AvatarGroup, Badge, Stack, Stepper } from "@mui/material";
+import {
+  Avatar,
+  AvatarGroup,
+  Badge,
+  Stack,
+  Stepper,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 
 const PostOne = () => {
+  const _700 = useMediaQuery("(min-width:700px)");
+
   return (
     <>
       <Stack
@@ -19,11 +28,11 @@ const PostOne = () => {
               alt="+"
               src=""
               sx={{
-                height: 20,
-                width: 20,
+                height: _700 ? 20 : 14,
+                width: _700 ? 20 : 14,
                 position: "relative",
-                right: 4,
-                bottom: 4,
+                right: _700 ? 4 : 0,
+                bottom: _700 ? 4 : 0,
                 top: 2,
               }}
             >
@@ -31,7 +40,11 @@ const PostOne = () => {
             </Avatar>
           }
         >
-          <Avatar alt="SV" src="" sx={{ width: 40, height: 40 }} />
+          <Avatar
+            alt="SV"
+            src=""
+            sx={{ width: _700 ? 40 : 32, height: _700 ? 40 : 32 }}
+          />
         </Badge>
 
         {/* Long line in Post */}
@@ -51,9 +64,9 @@ const PostOne = () => {
             total={3}
             sx={{
               "& .MuiAvatar-root": {
-                width: 24,
-                height: 24,
-                fontSize: 12,
+                width: _700 ? 24 : 16,
+                height: _700 ? 24 : 16,
+                fontSize: _700 ? 12 : 8,
               },
             }}
           >
