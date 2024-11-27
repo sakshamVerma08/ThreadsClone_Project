@@ -6,6 +6,7 @@ import PostOne from "./Post/PostOne";
 import PostTwo from "./Post/PostTwo";
 
 const Post = () => {
+  const _340 = useMediaQuery("(min-width:340px)");
   const _300 = useMediaQuery("(min-width:300px)");
   const _400 = useMediaQuery("(min-width:400px)");
   const _700 = useMediaQuery("(min-width:700px)");
@@ -36,18 +37,25 @@ const Post = () => {
           flexDirection={"row"}
           justifyContent={"center"}
           gap={1}
+          height={"20vh"}
+          width={"25vw"}
           fontSize={"1rem"}
+          bgcolor={"red"}
         >
-          <Typography
-            variant={"caption"}
-            color={"GrayText"}
-            fontSize={"1rem"}
-            // bgcolor={'red'}
-            positionn={"relative"}
-            top={2}
-          >
-            24h
-          </Typography>
+          {_340 ? (
+            <Typography
+              variant={"caption"}
+              color={"GrayText"}
+              fontSize={"1rem"}
+              // bgcolor={'red'}
+              positionn={"relative"}
+              top={2}
+            >
+              24h
+            </Typography>
+          ) : (
+            ""
+          )}
           <IoIosMenu size={_700 ? 28 : 20} />
         </Stack>
       </Stack>

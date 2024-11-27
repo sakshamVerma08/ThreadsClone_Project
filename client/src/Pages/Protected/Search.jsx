@@ -14,28 +14,27 @@ import SuggestionsPrompt from "../../components/Search/SuggestionsPrompt";
 import Profilebar from "../../components/Search/Profilebar";
 
 const Search = () => {
-  const _738 = useMediaQuery("(min-width:738px)");
+  const _700 = useMediaQuery("(min-width:700px)");
   return (
     <>
-      <Stack
-        flexDirection={"column"}
-        alignItems={"center"}
-        width={"100%"}
-      >
-        <Stack
+      <Stack flexDirection={"column"} alignItems={"center"} width={"100%"}>
+        {/* <Stack
           flexDirection={"row"}
+          bgcolor={"red"}
           justifyContent={"space-between"}
           alignItems={"center"}
-          width={_738 ? "57%" : "65%"}
+          width={"65%"}
         >
           <Typography></Typography>
-          <Typography sx={{ fontSize: "1.2vw" }}>Search</Typography>
-          <Button>
-            <Avatar size={32} sx={{ bgcolor: "#181818" }}>
+
+          <Typography sx={{ fontSize: "99%" }}>Search</Typography>
+          <Typography></Typography>
+          {/* <Button>
+            <Avatar size={_700 ? 20: 15} sx={{ bgcolor: "#181818" }}>
               <GoKebabHorizontal />
             </Avatar>
-          </Button>
-        </Stack>
+          </Button> 
+        </Stack> */}
 
         {/* <Stack
 
