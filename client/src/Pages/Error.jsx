@@ -1,15 +1,17 @@
 import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Error = ({ setHeaderStatus }) => {
   setHeaderStatus("not visible");
   const _700 = useMediaQuery("(min-width: 700px)");
   const _502 = useMediaQuery("(min-width:502px)");
+
+  const navigate = useNavigate();
+
   return (
     <>
       <Stack
         width={"100vw"}
-        bgcolor="antiquewhite"
         height={"100vh"}
         flexDirection={"row"}
         justifyContent={"center"}
@@ -31,21 +33,23 @@ const Error = ({ setHeaderStatus }) => {
             The link you followed may be broken , or the page may have been
             removed.
           </Typography>
-          <Link to="/">
-            <Button
-              href="/"
-              size={_700 ? "large" : "small"}
-              sx={{
-                fontSize: _700 ? "1.5vw" : "2vw",
-                p: _700 ? 2 : 1.5,
-                bgcolor: "blue",
-                color: "white",
-                borderRadius: "10px",
-              }}
-            >
-              Go Back to your Feed
-            </Button>
-          </Link>
+
+          <Button
+            onClick={() => {
+              navigate(-1);
+            }}
+            href="#"
+            size={_700 ? "large" : "small"}
+            sx={{
+              fontSize: _700 ? "1.5vw" : "2vw",
+              p: _700 ? 2 : 1.5,
+              bgcolor: "blue",
+              color: "white",
+              borderRadius: "10px",
+            }}
+          >
+            Go Back to your Feed
+          </Button>
         </Stack>
       </Stack>
     </>

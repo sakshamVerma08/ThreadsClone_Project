@@ -40,7 +40,7 @@ const Post = () => {
           height={"20vh"}
           width={"25vw"}
           fontSize={"1rem"}
-          bgcolor={"red"}
+          // bgcolor={"red"}
         >
           {_340 ? (
             <Typography

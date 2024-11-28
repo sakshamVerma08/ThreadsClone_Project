@@ -14,22 +14,27 @@ import Repost from "./Pages/Protected/Profile/Repost";
 import SinglePost from "./Pages/Protected/SinglePost";
 const App = () => {
   const [headerStatus, setHeaderStatus] = useState("visible");
+  const [data, setData] = useState(true);
+  console.log(data);
   return (
     <>
       <Box minHeight={"100vh"}>
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<Protectedlayout />}>
-              <Route exact path="" element={<Home />} />
-              <Route exact path="post/:id" element={<SinglePost />} />
-              <Route exact path="search" element={<Search />} />
-              <Route exact path="profile" element={<Profilelayout />}>
-                <Route exact path="threads/:id" element={<Threads />} />
-                <Route exact path="replies/:id" element={<Replies />} />
-                <Route exact path="repost/:id" element={<Repost />} />
+            {data ? (
+              <Route exact path="/" element={<Protectedlayout />}>
+                <Route exact path="" element={<Home />} />
+                <Route exact path="post/:id" element={<SinglePost />} />
+                <Route exact path="search" element={<Search />} />
+                <Route exact path="profile" element={<Profilelayout />}>
+                  <Route exact path="threads/:id" element={<Threads />} />
+                  <Route exact path="replies/:id" element={<Replies />} />
+                  <Route exact path="repost/:id" element={<Repost />} />
+                </Route>
               </Route>
-              <Route exact path="/register" element={<Register />} />
-            </Route>
+            ) : (
+              <Route exact path="/" element={<Register />} />
+            )}
 
             <Route
               exact

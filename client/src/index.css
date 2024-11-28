@@ -66,6 +66,27 @@ body {
   width: 100%;
 }
 
+.image-icon {
+  cursor: pointer;
+}
+
+.text-1 {
+  border: none;
+  padding: 5px 10px;
+  outline: none;
+  position: relative;
+  left: -10px;
+  color: grey;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.file-input {
+  display: none;
+}
+
+/* media queries start from here *************/
+
 @media (max-width: 539px) {
   .link {
     font-size: 3vw;
