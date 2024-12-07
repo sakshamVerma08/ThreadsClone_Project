@@ -3,10 +3,13 @@ import { FaRegHeart, FaRegComment, FaRetweet } from "react-icons/fa6";
 import { IoMdSend } from "react-icons/io";
 import React from "react";
 import { Link } from "react-router-dom";
+
 const PostTwo = () => {
+  /* video defined break points */
   const _300 = useMediaQuery("(min-width:300px)");
   const _400 = useMediaQuery("(min-width:400px)");
   const _500 = useMediaQuery("(min-width:500px)");
+  const _801 = useMediaQuery("(min-width: 801px )");
   const _700 = useMediaQuery("(min-width:700px)");
 
   return (
@@ -27,18 +30,17 @@ const PostTwo = () => {
         >
           {/* Post Title and description 'stack' starts here*/}
           <Stack flexDirection={"column"}>
-            <Typography fontSize={_300 ? "1.1rem" : "0.8rem"} fontWeight={500}>
+            <Typography fontSize={_300 ? "1rem" : "0.8rem"} fontWeight={500}>
               Saksham Verma
             </Typography>
 
-            <Link to="/post/2">
+            <Link to="/post/2" className="link">
               <Typography
                 fontWeight={
                   _700 ? "1.2rem" : _400 ? "1rem" : _300 ? "0.9rem" : "0.8rem"
                 }
               >
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea,
-                tempore.
+                Open Post from Here !
               </Typography>
             </Link>
           </Stack>
@@ -48,7 +50,9 @@ const PostTwo = () => {
             src="/error-bg.png"
             alt="Post Image"
             width={
-              _700
+              _801
+                ? "450px"
+                : _700
                 ? "400px"
                 : _500
                 ? "350px"

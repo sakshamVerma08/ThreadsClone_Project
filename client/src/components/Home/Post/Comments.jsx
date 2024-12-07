@@ -1,12 +1,29 @@
-import React, { useEffect } from "react";
-import { Avatar, Stack, Typography, useMediaQuery } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Avatar,
+  Menu,
+  MenuItem,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { IoIosMore } from "react-icons/io";
+import PostMenu from "../../menu/PostMenu";
 
 const Comments = () => {
   const _700 = useMediaQuery("(min-width:700px)");
+  const [anchorEl, setanchorEl] = useState(null);
+  const handleClose = () => {
+    setanchorEl(null);
+  };
+
+  const handleOpen = () => {
+    setanchorEl(event.currentTarget);
+  };
+
+  const handleDeleteComment = () => {};
   return (
     <>
-      {" "}
       {/* Comment Row starts*/}
       <Stack
         flexDirection={"row"}
@@ -43,10 +60,26 @@ const Comments = () => {
           fontSize={"0.9rem"}
         >
           <p>24 Minutes</p>
-          <IoIosMore size={_700 ? 28 : 20} />
+          <IoIosMore
+            size={_700 ? 28 : 20}
+            onClick={handleOpen}
+            style={{ cursor: "pointer" }}
+          />
         </Stack>
       </Stack>
       {/*Comment row ends*/}
+
+      {anchorEl && (
+        <Menu
+          anchorEl={anchorEl}
+          open={true}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          transformOrigin={{ vertical: "bottom", horizontal: "right" }}
+        >
+          <MenuItem onClick={handleDeleteComment}>Delete</MenuItem>
+        </Menu>
+      )}
     </>
   );
 };

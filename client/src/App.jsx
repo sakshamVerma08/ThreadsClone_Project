@@ -15,7 +15,6 @@ import SinglePost from "./Pages/Protected/SinglePost";
 const App = () => {
   const [headerStatus, setHeaderStatus] = useState("visible");
   const [data, setData] = useState(true);
-  console.log(data);
   return (
     <>
       <Box minHeight={"100vh"}>

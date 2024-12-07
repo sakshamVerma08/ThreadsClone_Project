@@ -9,16 +9,24 @@ const Threads = () => {
   return (
     <>
       <Stack
-        flexDirection={"column"}
-        mx={"auto"}
-        alignItems={"center"}
-        // bgcolor={"skyblue"}
-        gap={2}
-        minHeight={"70vh"}
-        width={_738 ? "100%" : _539 ? "100%" : "95%"}
-        mb={10}
+        position={"relative"}
+        height={"100vh"}
+        width={"50vw"}
+        bgcolor={"skyblue"}
       >
-        <Post />
+        <Stack
+          position={"absolute"}
+          left={0}
+          flexDirection={"column"}
+          mx={"auto"}
+          alignItems={"center"}
+          gap={2}
+          minHeight={"70vh"}
+          width={"99%"}
+          mb={10}
+        >
+          <Post />
+        </Stack>
       </Stack>
     </>
   );
