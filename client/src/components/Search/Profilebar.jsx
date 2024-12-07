@@ -7,8 +7,11 @@ import {
 } from "@mui/material";
 import React from "react";
 import Followbutton from "./Followbutton";
+import { useSelector } from "react-redux";
 
 const Profilebar = () => {
+  const { darkMode } = useSelector((state) => state.service);
+
   const _700 = useMediaQuery("(min-width:700px)");
 
   return (

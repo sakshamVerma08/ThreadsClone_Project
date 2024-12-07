@@ -5,6 +5,7 @@ import { Stack, useMediaQuery } from "@mui/material";
 import AddPost from "../../components/models/AddPost";
 import EditProfile from "../../components/models/EditProfile";
 import MainMenu from "../../components/menu/MainMenu";
+import PostMenu from "../../components/menu/PostMenu";
 const Protectedlayout = () => {
   const _700 = useMediaQuery("(min-width:700px)");
 
@@ -21,6 +22,7 @@ const Protectedlayout = () => {
         <AddPost />
         <EditProfile />
         <MainMenu />
+        <PostMenu />
         <Outlet />
       </Stack>
     </>

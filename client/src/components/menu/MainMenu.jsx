@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMainMenu } from "../../redux/slice";
+import { toggleColorMode, toggleMainMenu } from "../../redux/slice";
 const MainMenu = () => {
   const { anchorE1 } = useSelector((state) => state.service);
-  
+
   const dispatch = useDispatch();
 
   const handleClose = () => {
     dispatch(toggleMainMenu(null));
   };
 
-  const handleToggleTheme = () => {};
+  const handleToggleTheme = () => {
+    handleClose();
+    dispatch(toggleColorMode());
+  };
   const handleLogout = () => {};
   return (
     <>

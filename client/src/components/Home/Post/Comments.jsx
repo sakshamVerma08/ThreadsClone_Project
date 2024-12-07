@@ -9,16 +9,14 @@ import {
 } from "@mui/material";
 import { IoIosMore } from "react-icons/io";
 import PostMenu from "../../menu/PostMenu";
+import { useSelector } from "react-redux";
 
 const Comments = () => {
+  const { darkMode } = useSelector((state) => state.service);
   const _700 = useMediaQuery("(min-width:700px)");
   const [anchorEl, setanchorEl] = useState(null);
   const handleClose = () => {
     setanchorEl(null);
-  };
-
-  const handleOpen = () => {
-    setanchorEl(event.currentTarget);
   };
 
   const handleDeleteComment = () => {};
@@ -52,7 +50,7 @@ const Comments = () => {
         </Stack>
 
         <Stack
-          color="grey"
+          color={darkMode ? "white" : "GrayText"}
           height={"50%"}
           flexDirection={"row"}
           alignItems={"center"}
@@ -62,7 +60,9 @@ const Comments = () => {
           <p>24 Minutes</p>
           <IoIosMore
             size={_700 ? 28 : 20}
-            onClick={handleOpen}
+            onClick={(e) => {
+              setanchorEl(e.currentTarget);
+            }}
             style={{ cursor: "pointer" }}
           />
         </Stack>
@@ -72,10 +72,10 @@ const Comments = () => {
       {anchorEl && (
         <Menu
           anchorEl={anchorEl}
-          open={true}
+          open={anchorEl !== null ? true : false}
           onClose={handleClose}
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          transformOrigin={{ vertical: "bottom", horizontal: "right" }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          transformOrigin={{ vertical: "top", horizontal: "left" }}
         >
           <MenuItem onClick={handleDeleteComment}>Delete</MenuItem>
         </Menu>

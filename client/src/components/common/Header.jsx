@@ -1,15 +1,15 @@
 import { Grid, Grid2, Stack, useMediaQuery } from "@mui/material";
-import { CiMenuFries } from "react-icons/ci";
+import { CiMenuBurger } from "react-icons/ci";
 
 import React from "react";
 import Navbar from "./Navbar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMainMenu } from "../../redux/slice";
 const Header = () => {
   const dispatch = useDispatch();
+  const { darkMode } = useSelector((state) => state.service);
 
   const handleOpenMenu = (event) => {
-    console.log(event.currentTarget);
     dispatch(toggleMainMenu(event.currentTarget));
   };
 
@@ -30,7 +30,16 @@ const Header = () => {
           alignItems={"center"}
           height={52}
         >
-          <img src="/threadsLogo.webp" alt="logo" width={60} height={52} />
+          {darkMode ? (
+            <img src="/threadsLogo.webp" alt="logo" width={60} height={52} />
+          ) : (
+            <img
+              src="/Threads-logo-white-bg.png"
+              alt="logo"
+              width={89}
+              height={52}
+            />
+          )}
           <Stack
             justifyContent={"center"}
             width={"550px"}
@@ -40,7 +49,13 @@ const Header = () => {
             <Navbar />
           </Stack>
 
-          <CiMenuFries size={36} className="image-icon" color={"grey"} />
+          {/* <CiMenuFries size={36} className="image-icon" color={"grey"} /> */}
+          <CiMenuBurger
+            size={36}
+            className="image-icon"
+            color={"grey"}
+            onClick={handleOpenMenu}
+          />
         </Stack>
       ) : (
         <>

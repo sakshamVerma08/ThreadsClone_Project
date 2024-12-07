@@ -17,6 +17,7 @@ import { addPostModal } from "../../redux/slice";
 
 const AddPost = () => {
   const { openAddPostModal } = useSelector((state) => state.service);
+  const { darkMode } = useSelector((state) => state.service);
 
   const _700 = useMediaQuery("(min-width:700px)");
   const _500 = useMediaQuery("(min-width:500px)");
@@ -42,6 +43,7 @@ const AddPost = () => {
     <>
       <Dialog
         open={openAddPostModal}
+        // give bg color of dialog box here!
         onClose={handleClose}
         fullWidth
         fullScreen={_700 ? false : true}
@@ -49,14 +51,23 @@ const AddPost = () => {
         <Box position={"absolute"} top={20} right={20} onClick={handleClose}>
           <RxCross2 size={28} className="image-icon" />
         </Box>
-        <DialogTitle textAlign={"center"} mb={5}>
+        <DialogTitle
+          textAlign={"center"}
+          color={darkMode ? "whitesmoke" : "black"}
+          mb={5}
+        >
           New Thread ...
         </DialogTitle>
         <DialogContent>
           <Stack flexDirection={"row"} mb={5} gap={2}>
             <Avatar src="" alt="" />
             <Stack>
-              <Typography variant="h6" fontWeight={"bold"} fontSize={"1rem"}>
+              <Typography
+                variant="h6"
+                fontWeight={"bold"}
+                color={darkMode ? "whitesmoke" : "black"}
+                fontSize={"1rem"}
+              >
                 SakshamVerma08
               </Typography>
               <textarea
@@ -65,9 +76,9 @@ const AddPost = () => {
                 className="text-1"
                 placeholder="Start a Thread..."
                 autoFocus
+                color={darkMode ? "whitesmoke" : "black"}
                 onChange={(e) => {
                   setText(e.target.value);
-                  console.log(e.target.value);
                 }}
               />
               {media ? (
@@ -80,6 +91,7 @@ const AddPost = () => {
               ) : null}
               <FaImages
                 size={28}
+                color={darkMode ? "whitesmoke" : "black"}
                 className="image-icon"
                 onClick={handleMediaRef}
               />
@@ -100,7 +112,11 @@ const AddPost = () => {
             justifyContent={"space-between"}
             alignItems={"center"}
           >
-            <Typography variant="h6" fontSize={"1rem"} color={"grey"}>
+            <Typography
+              variant="h6"
+              fontSize={"1rem"}
+              color={darkMode ? "whitesmoke" : "grey"}
+            >
               Anyone can reply
             </Typography>
             <Button

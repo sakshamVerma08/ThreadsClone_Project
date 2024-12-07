@@ -3,6 +3,7 @@ import { FaRegHeart, FaRegComment, FaRetweet } from "react-icons/fa6";
 import { IoMdSend } from "react-icons/io";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PostTwo = () => {
   /* video defined break points */
@@ -11,6 +12,8 @@ const PostTwo = () => {
   const _500 = useMediaQuery("(min-width:500px)");
   const _801 = useMediaQuery("(min-width: 801px )");
   const _700 = useMediaQuery("(min-width:700px)");
+
+  const { darkMode } = useSelector((state) => state.service);
 
   return (
     <>
@@ -30,12 +33,17 @@ const PostTwo = () => {
         >
           {/* Post Title and description 'stack' starts here*/}
           <Stack flexDirection={"column"}>
-            <Typography fontSize={_300 ? "1rem" : "0.8rem"} fontWeight={500}>
+            <Typography
+              className={darkMode ? "mode" : ""}
+              fontSize={_300 ? "1rem" : "0.8rem"}
+              fontWeight={500}
+            >
               Saksham Verma
             </Typography>
 
             <Link to="/post/2" className="link">
               <Typography
+                className={darkMode ? "mode" : ""}
                 fontWeight={
                   _700 ? "1.2rem" : _400 ? "1rem" : _300 ? "0.9rem" : "0.8rem"
                 }
@@ -83,14 +91,14 @@ const PostTwo = () => {
             <Typography
               variant="caption"
               fontSize={_700 ? "1.1rem" : "1rem"}
-              color="GrayText"
+              color={darkMode ? "white" : "GrayText"}
             >
               2 Likes.
             </Typography>
             <Typography
               variant="caption"
               fontSize={_700 ? "1.1rem" : "1rem"}
-              color="GrayText"
+              color={darkMode ? "white" : "GrayText"}
             >
               1 Comment.
             </Typography>
