@@ -13,8 +13,14 @@ import { Link, Outlet, useMatch } from "react-router-dom";
 import Threads from "./Threads";
 import Replies from "./Replies";
 import Repost from "./Repost";
+import { useDispatch } from "react-redux";
+import { editProfileModal } from "../../../redux/slice";
 
 const Profilelayout = () => {
+  const dispatch = useDispatch();
+  const handleOpenEditModal = () => {
+    dispatch(editProfileModal(true));
+  };
   const _768 = useMediaQuery("(min-width:768)");
   const _615 = useMediaQuery("(min-width:615px)");
   const _539 = useMediaQuery("(min-width:539px)");
@@ -102,12 +108,12 @@ const Profilelayout = () => {
               border: "1px solid grey",
               ":hover": {
                 cursor: "pointer",
-                backgroundColor: "antiquewhite",
               },
             }}
             mx={"auto"}
             color="#000"
             variant="outlined"
+            onClick={handleOpenEditModal}
           >
             Edit profile
           </Button>

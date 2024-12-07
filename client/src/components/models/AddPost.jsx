@@ -12,8 +12,12 @@ import {
 } from "@mui/material";
 import { RxCross2 } from "react-icons/rx";
 import { FaImages } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { addPostModal } from "../../redux/slice";
 
 const AddPost = () => {
+  const { openAddPostModal } = useSelector((state) => state.service);
+
   const _700 = useMediaQuery("(min-width:700px)");
   const _500 = useMediaQuery("(min-width:500px)");
   const _300 = useMediaQuery("(min-width:300px)");
@@ -22,8 +26,12 @@ const AddPost = () => {
   const [media, setMedia] = useState();
 
   const mediaRef = useRef();
+  const dispatch = useDispatch();
 
-  const handleClose = () => {};
+  const handleClose = () => {
+    dispatch(addPostModal(false));
+  };
+
   const handleMediaRef = () => {
     mediaRef.current.click();
   };
@@ -33,7 +41,7 @@ const AddPost = () => {
   return (
     <>
       <Dialog
-        open={true}
+        open={openAddPostModal}
         onClose={handleClose}
         fullWidth
         fullScreen={_700 ? false : true}

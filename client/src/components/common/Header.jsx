@@ -3,8 +3,16 @@ import { CiMenuFries } from "react-icons/ci";
 
 import React from "react";
 import Navbar from "./Navbar";
-
+import { useDispatch } from "react-redux";
+import { toggleMainMenu } from "../../redux/slice";
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const handleOpenMenu = (event) => {
+    console.log(event.currentTarget);
+    dispatch(toggleMainMenu(event.currentTarget));
+  };
+
   const _700 = useMediaQuery("(min-width:700px)");
   const _425 = useMediaQuery("(min-width:425px)");
   return (
@@ -57,19 +65,21 @@ const Header = () => {
             alignItems={"center"}
             p={1}
           >
-            <div></div>
-              {" "}
-              <Grid2 xs={6}>
-                <img
-                  src="/Threads-logo-white-bg.png"
-                  alt="logo"
-                  height={35}
-                  width={60}
-                />
-              </Grid2>
-          
-
-            <CiMenuFries size={36} className="image-icon" color={"grey"} />
+            <div></div>{" "}
+            <Grid2 xs={6}>
+              <img
+                src="/Threads-logo-white-bg.png"
+                alt="logo"
+                height={35}
+                width={60}
+              />
+            </Grid2>
+            <CiMenuFries
+              size={36}
+              className="image-icon"
+              color={"grey"}
+              onClick={handleOpenMenu}
+            />
           </Grid2>
         </>
       )}
