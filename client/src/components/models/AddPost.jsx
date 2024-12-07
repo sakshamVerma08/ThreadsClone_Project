@@ -44,6 +44,7 @@ const AddPost = () => {
       <Dialog
         open={openAddPostModal}
         // give bg color of dialog box here!
+
         onClose={handleClose}
         fullWidth
         fullScreen={_700 ? false : true}
@@ -51,11 +52,7 @@ const AddPost = () => {
         <Box position={"absolute"} top={20} right={20} onClick={handleClose}>
           <RxCross2 size={28} className="image-icon" />
         </Box>
-        <DialogTitle
-          textAlign={"center"}
-          color={darkMode ? "whitesmoke" : "black"}
-          mb={5}
-        >
+        <DialogTitle textAlign={"center"} color={"black"} mb={5}>
           New Thread ...
         </DialogTitle>
         <DialogContent>
@@ -65,7 +62,7 @@ const AddPost = () => {
               <Typography
                 variant="h6"
                 fontWeight={"bold"}
-                color={darkMode ? "whitesmoke" : "black"}
+                color={"black"}
                 fontSize={"1rem"}
               >
                 SakshamVerma08
@@ -76,7 +73,7 @@ const AddPost = () => {
                 className="text-1"
                 placeholder="Start a Thread..."
                 autoFocus
-                color={darkMode ? "whitesmoke" : "black"}
+                color={"black"}
                 onChange={(e) => {
                   setText(e.target.value);
                 }}
@@ -91,7 +88,7 @@ const AddPost = () => {
               ) : null}
               <FaImages
                 size={28}
-                color={darkMode ? "whitesmoke" : "black"}
+                color={"black"}
                 className="image-icon"
                 onClick={handleMediaRef}
               />
@@ -112,11 +109,7 @@ const AddPost = () => {
             justifyContent={"space-between"}
             alignItems={"center"}
           >
-            <Typography
-              variant="h6"
-              fontSize={"1rem"}
-              color={darkMode ? "whitesmoke" : "grey"}
-            >
+            <Typography variant="h6" fontSize={"1rem"} color={"black"}>
               Anyone can reply
             </Typography>
             <Button

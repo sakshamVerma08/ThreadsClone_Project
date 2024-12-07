@@ -136,6 +136,9 @@ body {
   color: #262222;
 }
 
+.darkDialog {
+  background-color: rgb(18, 18, 18);
+}
 
 .file-input {
   display: none;
