@@ -17,7 +17,7 @@ const App = () => {
   const { darkMode } = useSelector((state) => state.service);
 
   const [headerStatus, setHeaderStatus] = useState("visible");
-  const [data, setData] = useState(true);
+  const [data, setData] = useState(false);
   return (
     <>
       <Box minHeight={"100vh"} className = {darkMode? 'mode':''}>

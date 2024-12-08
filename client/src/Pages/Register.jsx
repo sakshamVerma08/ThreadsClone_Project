@@ -5,9 +5,12 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSignUpMutation } from "../redux/service";
 
 const Register = () => {
+  const [signUpUser, signUpUserData] = useSignUpMutation();
+
   // MEDIA QUERIES
   //******************** */
   const _700 = useMediaQuery("(min-width:700px)");
@@ -17,8 +20,8 @@ const Register = () => {
   // State to track whether a user is logged in or not.
   const [login, setLogin] = useState(false);
 
-  // Username, Email and password states, to keep updating the changing input field
-  const [username, setUsername] = useState("");
+  // userName, Email and password states, to keep updating the changing input field
+  const [userName, setuserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const toggleLogin = () => {
@@ -27,13 +30,18 @@ const Register = () => {
 
   const handleLogin = () => {
     const data = { email, password };
-    console.log(data);
   };
 
-  const handleRegister = () => {
-    const data = { username, email, password };
-    console.log(data);
+  const handleRegister = async () => {
+    const data = { userName, email, password };
+    await signUpUser(data);
   };
+
+  useEffect(() => {
+    if (signUpUserData.isSuccess) {
+      console.log(signUpUserData.data);
+    }
+  }, [signUpUserData.isSuccess]);
 
   return (
     <>
@@ -71,9 +79,9 @@ const Register = () => {
           {login ? null : (
             <TextField
               variant="outlined"
-              placeholder="Enter your Username..."
+              placeholder="Enter your userName..."
               onChange={(e) => {
-                setUsername(e.target.value);
+                setuserName(e.target.value);
               }}
             />
           )}
