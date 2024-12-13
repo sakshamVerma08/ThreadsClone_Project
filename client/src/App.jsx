@@ -13,14 +13,17 @@ import Replies from "./Pages/Protected/Profile/Replies";
 import Repost from "./Pages/Protected/Profile/Repost";
 import SinglePost from "./Pages/Protected/SinglePost";
 import { useSelector } from "react-redux";
+import { useMyInfoQuery } from "./redux/service";
 const App = () => {
   const { darkMode } = useSelector((state) => state.service);
 
   const [headerStatus, setHeaderStatus] = useState("visible");
   const [data, setData] = useState(false);
+  // const data = useMyInfoQuery();
+  console.log(data);
   return (
     <>
-      <Box minHeight={"100vh"} className = {darkMode? 'mode':''}>
+      <Box minHeight={"100vh"} className={darkMode ? "mode" : ""}>
         <BrowserRouter>
           <Routes>
             {data ? (

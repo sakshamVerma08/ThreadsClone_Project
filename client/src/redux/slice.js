@@ -8,6 +8,7 @@ export const serviceSlice = createSlice({
     anchorE1: null,
     anchorE2: null,
     darkMode: false,
+    myInfo: null,
   },
   reducers: {
     addPostModal: (state, actions) => {
@@ -26,6 +27,10 @@ export const serviceSlice = createSlice({
     toggleColorMode: (state, actions) => {
       state.darkMode = !state.darkMode;
     },
+
+    addMyInfo: (state, actions) => {
+      state.myInfo = actions.payload.me;
+    },
   },
 });
 
@@ -35,6 +40,7 @@ export const {
   toggleMainMenu,
   toggleMyMenu,
   toggleColorMode,
+  addMyInfo
 } = serviceSlice.actions;
 
 export default serviceSlice.reducer;

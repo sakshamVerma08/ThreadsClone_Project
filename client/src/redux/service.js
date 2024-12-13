@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { addMyInfo } from "./slice";
 
 export const serviceApi = createApi({
   reducerPath: "serviceApi",
@@ -17,7 +18,33 @@ export const serviceApi = createApi({
       }),
       invalidateTags: ["Me"],
     }),
+
+    login: builder.mutation({
+      query: (data) => ({
+        url: "login",
+        method: "post",
+        body: data,
+      }),
+      invalidatesTags: ["Me"],
+    }),
+
+    myInfo: builder.query({
+      query: () => ({
+        url: "me",
+        method: "GET",
+      }),
+      providesTags: ["Me"],
+      async onQueryStarted(params, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(addMyInfo(data));
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    }),
   }),
 });
 
-export const { useSignUpMutation } = serviceApi;
+export const { useSignUpMutation, useLoginMutation, useMyInfoQuery } =
+  serviceApi;

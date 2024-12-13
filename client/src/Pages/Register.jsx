@@ -6,10 +6,11 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useSignUpMutation } from "../redux/service";
+import { useLoginMutation, useSignUpMutation } from "../redux/service";
 
 const Register = () => {
   const [signUpUser, signUpUserData] = useSignUpMutation();
+  const [logIn, logInUserData] = useLoginMutation();
 
   // MEDIA QUERIES
   //******************** */
@@ -28,8 +29,9 @@ const Register = () => {
     setLogin((prev) => !prev);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const data = { email, password };
+    await logIn(data);
   };
 
   const handleRegister = async () => {
@@ -41,7 +43,10 @@ const Register = () => {
     if (signUpUserData.isSuccess) {
       console.log(signUpUserData.data);
     }
-  }, [signUpUserData.isSuccess]);
+    if (logInUserData.isSuccess) {
+      console.log(logInUserData.data);
+    }
+  }, [signUpUserData.isSuccess, logInUserData.isSuccess]);
 
   return (
     <>
