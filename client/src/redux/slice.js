@@ -24,12 +24,12 @@ export const serviceSlice = createSlice({
     toggleMyMenu: (state, actions) => {
       state.anchorE2 = actions.payload;
     },
-    toggleColorMode: (state, actions) => {
+    toggleColorMode: (state) => {
       state.darkMode = !state.darkMode;
     },
 
     addMyInfo: (state, actions) => {
-      state.myInfo = actions.payload.me;
+      state.myInfo = actions.payload;
     },
   },
 });
@@ -40,7 +40,7 @@ export const {
   toggleMainMenu,
   toggleMyMenu,
   toggleColorMode,
-  addMyInfo
+  addMyInfo,
 } = serviceSlice.actions;
 
 export default serviceSlice.reducer;

@@ -16,30 +16,35 @@ import { useSelector } from "react-redux";
 import { useMyInfoQuery } from "./redux/service";
 const App = () => {
   const { darkMode } = useSelector((state) => state.service);
-
   const [headerStatus, setHeaderStatus] = useState("visible");
-  const [data, setData] = useState(false);
-  // const data = useMyInfoQuery();
-  console.log(data);
+  const { data, isError } = useMyInfoQuery();
+  if (isError || !data) {
+    return (
+      <>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="*" element={<Register />} />
+          </Routes>
+        </BrowserRouter>
+      </>
+    );
+  }
+  // console.log(data);
   return (
     <>
       <Box minHeight={"100vh"} className={darkMode ? "mode" : ""}>
         <BrowserRouter>
           <Routes>
-            {data ? (
-              <Route exact path="/" element={<Protectedlayout />}>
-                <Route exact path="" element={<Home />} />
-                <Route exact path="post/:id" element={<SinglePost />} />
-                <Route exact path="search" element={<Search />} />
-                <Route exact path="profile" element={<Profilelayout />}>
-                  <Route exact path="threads/:id" element={<Threads />} />
-                  <Route exact path="replies/:id" element={<Replies />} />
-                  <Route exact path="repost/:id" element={<Repost />} />
-                </Route>
+            <Route exact path="/" element={<Protectedlayout />}>
+              <Route exact path="" element={<Home />} />
+              <Route exact path="post/:id" element={<SinglePost />} />
+              <Route exact path="search" element={<Search />} />
+              <Route exact path="profile" element={<Profilelayout />}>
+                <Route exact path="threads/:id" element={<Threads />} />
+                <Route exact path="replies/:id" element={<Replies />} />
+                <Route exact path="repost/:id" element={<Repost />} />
               </Route>
-            ) : (
-              <Route exact path="/" element={<Register />} />
-            )}
+            </Route>
 
             <Route
               exact

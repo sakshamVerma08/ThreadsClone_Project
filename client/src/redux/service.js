@@ -22,7 +22,7 @@ export const serviceApi = createApi({
     login: builder.mutation({
       query: (data) => ({
         url: "login",
-        method: "post",
+        method: "POST",
         body: data,
       }),
       invalidatesTags: ["Me"],
@@ -30,10 +30,11 @@ export const serviceApi = createApi({
 
     myInfo: builder.query({
       query: () => ({
-        url: "me",
+        url: "myinfo",
         method: "GET",
       }),
       providesTags: ["Me"],
+      // pessimistic updating
       async onQueryStarted(params, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -43,8 +44,17 @@ export const serviceApi = createApi({
         }
       },
     }),
+
+    logoutMe: builder.mutation({
+      query: () => ({
+        url: "logout",
+        method: "POST",
+      }),
+
+      invalidatesTags: ["Me"],
+    }),
   }),
 });
 
-export const { useSignUpMutation, useLoginMutation, useMyInfoQuery } =
+export const { useSignUpMutation, useLoginMutation, useMyInfoQuery, useLogoutMeMutation } =
   serviceApi;

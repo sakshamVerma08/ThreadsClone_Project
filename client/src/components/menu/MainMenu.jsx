@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleColorMode, toggleMainMenu } from "../../redux/slice";
+import { addMyInfo, toggleColorMode, toggleMainMenu } from "../../redux/slice";
+import { useLogoutMeMutation } from "../../redux/service";
 const MainMenu = () => {
   const { anchorE1 } = useSelector((state) => state.service);
-
   const dispatch = useDispatch();
-
+  const [logoutMe, logoutMeData] = useLogoutMeMutation();
+  // logoutMe is a function inside of which we can send data and logoutMeData is the data of the response.
   const handleClose = () => {
     dispatch(toggleMainMenu(null));
   };
@@ -16,7 +17,18 @@ const MainMenu = () => {
     handleClose();
     dispatch(toggleColorMode());
   };
-  const handleLogout = () => {};
+  const handleLogout = async () => {
+    handleClose();
+    await logoutMe();
+  };
+
+  useEffect(() => {
+    if (logoutMeData.isSuccess) {
+      dispatch(addMyInfo(null));
+      console.log(logoutMeData.data);
+      window.location.reload();
+    }
+  }, [logoutMeData.isSuccess]);
   return (
     <>
       <Menu
@@ -28,7 +40,7 @@ const MainMenu = () => {
       >
         <MenuItem onClick={handleToggleTheme}>Toggle Theme</MenuItem>
         <Link className="link" to="/profile/threads/2">
-          <MenuItem>My Profile</MenuItem>
+          <MenuItem onClick={handleClose}>My Profile</MenuItem>
         </Link>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
