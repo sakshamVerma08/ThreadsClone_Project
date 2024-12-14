@@ -17,7 +17,6 @@ import { addPostModal } from "../../redux/slice";
 
 const AddPost = () => {
   const { openAddPostModal } = useSelector((state) => state.service);
-  const { darkMode } = useSelector((state) => state.service);
 
   const _700 = useMediaQuery("(min-width:700px)");
   const _500 = useMediaQuery("(min-width:500px)");
@@ -44,7 +43,6 @@ const AddPost = () => {
       <Dialog
         open={openAddPostModal}
         // give bg color of dialog box here!
-
         onClose={handleClose}
         fullWidth
         fullScreen={_700 ? false : true}

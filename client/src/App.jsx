@@ -21,6 +21,8 @@ const App = () => {
   const token = localStorage.getItem("token");
   // const isLoggedOut = isError || !data || !token;
   const isLoggedOut = !token;
+  console.log("isLoggedOut:", isLoggedOut);
+
   if (isLoggedOut) {
     return (
       <>
@@ -33,7 +35,6 @@ const App = () => {
       </>
     );
   }
-  console.log("isLoggedOut:", isLoggedOut);
   return (
     <>
       <Box minHeight={"100vh"} className={darkMode ? "mode" : ""}>

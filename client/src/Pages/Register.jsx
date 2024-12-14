@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useLoginMutation, useSignUpMutation } from "../redux/service";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addMyInfo } from "../redux/slice";
 
 const Register = () => {
@@ -16,7 +16,7 @@ const Register = () => {
   const [logIn, logInUserData] = useLoginMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loginMutation] = useLoginMutation();
+  const darkMode = useSelector((state) => state.service.darkMode);
 
   // MEDIA QUERIES
   //******************** */
@@ -35,22 +35,42 @@ const Register = () => {
     setLogin((prev) => !prev);
   };
 
-  const handleLogin = async () => {
+  /*const handleLogin = async () => {
     try {
       const data = { email, password };
-      const response = await loginMutation(data).unwrap();
+      const response = await logIn(data).unwrap();
+      console.log("response:", response);
       localStorage.setItem("token", response.token);
-      await logIn(data);
       dispatch(addMyInfo(response.user));
       // navigate("/");
     } catch (err) {
       console.log("Login Failed:", err);
     }
+  };*/
+
+  const handleLogin = async () => {
+    try {
+      const data = { email, password };
+      const res = await logIn(data).unwrap();
+      console.log("res:", res);
+      if (res.token) {
+        localStorage.setItem("token", res.token);
+        dispatch(addMyInfo(res.user));
+      } else {
+        console.error("Token is missing in the response");
+      }
+    } catch (err) {
+      console.log("Login failed:", err);
+    }
   };
 
   const handleRegister = async () => {
-    const data = { userName, email, password };
-    await signUpUser(data);
+    try {
+      const data = { userName, email, password };
+      await signUpUser(data);
+    } catch (err) {
+      console.log("Sign Up error: ", err);
+    }
   };
 
   useEffect(() => {

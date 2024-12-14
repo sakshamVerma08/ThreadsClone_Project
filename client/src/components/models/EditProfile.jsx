@@ -16,7 +16,7 @@ import { editProfileModal } from "../../redux/slice";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const { openEditProfileModal } = useSelector((state) => state.service);
+  const { openEditProfileModal,darkMode} = useSelector((state) => state.service);
   const [pic, setPic] = useState();
   const [bio, setBio] = useState();
   const imageRef = useRef();

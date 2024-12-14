@@ -132,12 +132,12 @@ body {
 }
 
 .link {
-  text-decoration: none;
+  text-decoration: none;  
   color: #262222;
 }
 
 .darkDialog {
-  background-color: rgb(38, 37, 37);
+  background-color: rgb(41, 37, 37);
 }
 
 .file-input {

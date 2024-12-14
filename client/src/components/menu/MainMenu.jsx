@@ -26,12 +26,13 @@ const MainMenu = () => {
     dispatch(toggleColorMode());
   };
   const handleLogout = async () => {
+    console.log("Called handleLogout()");
     handleClose();
 
     try {
       await logoutMe().unwrap();
       localStorage.removeItem("token");
-      dispatch(addMyInfo(null));
+      dispatch(clearUser());
       navigate("/login");
     } catch (err) {
       console.log("logout failed:", err);
