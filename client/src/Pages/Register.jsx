@@ -7,10 +7,16 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLoginMutation, useSignUpMutation } from "../redux/service";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addMyInfo } from "../redux/slice";
 
 const Register = () => {
   const [signUpUser, signUpUserData] = useSignUpMutation();
   const [logIn, logInUserData] = useLoginMutation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loginMutation] = useLoginMutation();
 
   // MEDIA QUERIES
   //******************** */
@@ -30,8 +36,16 @@ const Register = () => {
   };
 
   const handleLogin = async () => {
-    const data = { email, password };
-    await logIn(data);
+    try {
+      const data = { email, password };
+      const response = await loginMutation(data).unwrap();
+      localStorage.setItem("token", response.token);
+      await logIn(data);
+      dispatch(addMyInfo(response.user));
+      // navigate("/");
+    } catch (err) {
+      console.log("Login Failed:", err);
+    }
   };
 
   const handleRegister = async () => {

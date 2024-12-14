@@ -45,6 +45,7 @@ export const serviceApi = createApi({
       },
     }),
 
+    // The Logout functioning is not working.
     logoutMe: builder.mutation({
       query: () => ({
         url: "logout",
@@ -53,8 +54,29 @@ export const serviceApi = createApi({
 
       invalidatesTags: ["Me"],
     }),
+
+    userDetails: builder.query({
+      query: (id) => ({
+        url: `user/${id}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, { id }) => [{ type: "User", id }],
+      async onQueryStarted(params, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(addUser(data));
+        } catch (err) {
+          console.log("err:", err);
+        }
+      },
+    }),
   }),
 });
 
-export const { useSignUpMutation, useLoginMutation, useMyInfoQuery, useLogoutMeMutation } =
-  serviceApi;
+export const {
+  useSignUpMutation,
+  useLoginMutation,
+  useMyInfoQuery,
+  useLogoutMeMutation,
+  useUserDetailsQuery,
+} = serviceApi;

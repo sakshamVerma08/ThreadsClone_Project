@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addMyInfo, toggleColorMode, toggleMainMenu } from "../../redux/slice";
+import {
+  addMyInfo,
+  clearUser,
+  toggleColorMode,
+  toggleMainMenu,
+} from "../../redux/slice";
 import { useLogoutMeMutation } from "../../redux/service";
+import { store } from "../../redux/store.js";
 const MainMenu = () => {
-  const { anchorE1 } = useSelector((state) => state.service);
+  const { anchorE1, myInfo } = useSelector((state) => state.service);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [logoutMe, logoutMeData] = useLogoutMeMutation();
   // logoutMe is a function inside of which we can send data and logoutMeData is the data of the response.
   const handleClose = () => {
@@ -19,16 +27,25 @@ const MainMenu = () => {
   };
   const handleLogout = async () => {
     handleClose();
-    await logoutMe();
+
+    try {
+      await logoutMe().unwrap();
+      localStorage.removeItem("token");
+      dispatch(addMyInfo(null));
+      navigate("/login");
+    } catch (err) {
+      console.log("logout failed:", err);
+    }
   };
 
-  useEffect(() => {
+  /*  useEffect(() => {
     if (logoutMeData.isSuccess) {
       dispatch(addMyInfo(null));
-      console.log(logoutMeData.data);
+      console.log("logoutMeData: ", logoutMeData.data);
       window.location.reload();
     }
   }, [logoutMeData.isSuccess]);
+*/
   return (
     <>
       <Menu

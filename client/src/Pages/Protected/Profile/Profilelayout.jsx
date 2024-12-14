@@ -9,12 +9,13 @@ import {
 import React from "react";
 import { FaInstagram } from "react-icons/fa";
 import { CgInsights } from "react-icons/cg";
-import { Link, Outlet, useMatch } from "react-router-dom";
+import { Link, Outlet, useMatch, useParams } from "react-router-dom";
 import Threads from "./Threads";
 import Replies from "./Replies";
 import Repost from "./Repost";
 import { useDispatch } from "react-redux";
 import { editProfileModal } from "../../../redux/slice";
+import { useUserDetailsQuery } from "../../../redux/service";
 
 const Profilelayout = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ const Profilelayout = () => {
   const _539 = useMediaQuery("(min-width:539px)");
   const _529 = useMediaQuery("(min-width: 529px)");
   const _300 = useMediaQuery("(max-width:300px)");
+  const params = useParams();
+  const data = useUserDetailsQuery(params.id);
   return (
     <div id="profileContainer">
       <Stack

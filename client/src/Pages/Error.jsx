@@ -1,8 +1,11 @@
 import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Error = ({ setHeaderStatus }) => {
-  setHeaderStatus("not visible");
+  useEffect(() => {
+    setHeaderStatus("not visible");
+  }, [setHeaderStatus]);
+
   const _700 = useMediaQuery("(min-width: 700px)");
   const _502 = useMediaQuery("(min-width:502px)");
 
@@ -16,7 +19,7 @@ const Error = ({ setHeaderStatus }) => {
         flexDirection={"row"}
         justifyContent={"center"}
         alignItems={"flex-start"}
-        sx={{}}
+        
       >
         <Stack
           p={_700 ? 5 : 3}

@@ -9,6 +9,7 @@ export const serviceSlice = createSlice({
     anchorE2: null,
     darkMode: false,
     myInfo: null,
+    user: {},
   },
   reducers: {
     addPostModal: (state, actions) => {
@@ -31,6 +32,14 @@ export const serviceSlice = createSlice({
     addMyInfo: (state, actions) => {
       state.myInfo = actions.payload;
     },
+
+    addUser: (state, actions) => {
+      state.user = actions.payload;
+    },
+
+    clearUser: (state) => {
+      state.user = null;
+    },
   },
 });
 
@@ -41,6 +50,8 @@ export const {
   toggleMyMenu,
   toggleColorMode,
   addMyInfo,
+  addUser,
+  clearUser,
 } = serviceSlice.actions;
 
 export default serviceSlice.reducer;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/common/Header";
 import Home from "./Pages/Protected/Home";
 import Search from "./Pages/Protected/Search";
@@ -15,21 +15,25 @@ import SinglePost from "./Pages/Protected/SinglePost";
 import { useSelector } from "react-redux";
 import { useMyInfoQuery } from "./redux/service";
 const App = () => {
-  const { darkMode } = useSelector((state) => state.service);
+  const { darkMode, myInfo } = useSelector((state) => state.service);
   const [headerStatus, setHeaderStatus] = useState("visible");
   const { data, isError } = useMyInfoQuery();
-  if (isError || !data) {
+  const token = localStorage.getItem("token");
+  // const isLoggedOut = isError || !data || !token;
+  const isLoggedOut = !token;
+  if (isLoggedOut) {
     return (
       <>
         <BrowserRouter>
           <Routes>
-            <Route exact path="*" element={<Register />} />
+            <Route path="*" element={<Navigate to="/register" replace />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </BrowserRouter>
       </>
     );
   }
-  // console.log(data);
+  console.log("isLoggedOut:", isLoggedOut);
   return (
     <>
       <Box minHeight={"100vh"} className={darkMode ? "mode" : ""}>
@@ -45,7 +49,6 @@ const App = () => {
                 <Route exact path="repost/:id" element={<Repost />} />
               </Route>
             </Route>
-
             <Route
               exact
               path="*"
