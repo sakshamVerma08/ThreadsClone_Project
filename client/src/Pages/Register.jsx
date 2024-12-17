@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLoginMutation, useSignUpMutation } from "../redux/service";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addMyInfo } from "../redux/slice";
 
@@ -52,10 +52,10 @@ const Register = () => {
     try {
       const data = { email, password };
       const res = await logIn(data).unwrap();
-      console.log("res:", res);
       if (res.token) {
         localStorage.setItem("token", res.token);
         dispatch(addMyInfo(res.user));
+        navigate("/");
       } else {
         console.error("Token is missing in the response");
       }

@@ -21,7 +21,6 @@ const App = () => {
   const token = localStorage.getItem("token");
   // const isLoggedOut = isError || !data || !token;
   const isLoggedOut = !token;
-  console.log("isLoggedOut:", isLoggedOut);
 
   if (isLoggedOut) {
     return (

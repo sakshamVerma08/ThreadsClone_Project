@@ -10,6 +10,7 @@ export const serviceSlice = createSlice({
     darkMode: false,
     myInfo: null,
     user: {},
+    allPosts: [],
   },
   reducers: {
     addPostModal: (state, actions) => {
@@ -40,6 +41,27 @@ export const serviceSlice = createSlice({
     clearUser: (state) => {
       state.user = null;
     },
+    addToAllPosts: (state, actions) => {
+      const newPostArray = [...actions.payload.posts];
+      if (state.allPosts.length === 0) {
+        state.allPosts = newPostArray;
+        return;
+      }
+      const existingPosts = [...state.allPosts];
+      newPostArr.forEach((e) => {
+        const existingIndex = existingPosts.findIndex((i) => {
+          return i._id === e._id;
+        });
+
+        if (existingIndex !== -1) {
+          existingPosts[existingIndex] = e;
+        } else {
+          existingPosts.push(e);
+        }
+      });
+
+      state.allPosts = existingPosts;
+    },
   },
 });
 
@@ -52,6 +74,7 @@ export const {
   addMyInfo,
   addUser,
   clearUser,
+  addToAllPosts,
 } = serviceSlice.actions;
 
 export default serviceSlice.reducer;
