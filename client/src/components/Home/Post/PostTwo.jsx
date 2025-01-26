@@ -52,10 +52,7 @@ const PostTwo = ({ e }) => {
     }
   }, [repostData.isSuccess, repostData.isError]);
 
-  // useEffect used just to print 'e', for development purpose
-  useEffect(() => {
-    console.log(e);
-  }, [e]);
+  console.log(e);
 
   return (
     <>
@@ -97,7 +94,8 @@ const PostTwo = ({ e }) => {
 
           {/* Post title and description 'stack' ends here*/}
           <img
-            src="/error-bg.png"
+            // src="/error-bg.png"
+            src={e ? e.media : "/error-bg.png"}
             alt="Post Image"
             width={
               _801
@@ -135,14 +133,14 @@ const PostTwo = ({ e }) => {
               fontSize={_700 ? "1.1rem" : "1rem"}
               color={darkMode ? "white" : "GrayText"}
             >
-              2 Likes.
+              {e ? `${e.likes.length} Likes` : "x Likes"}
             </Typography>
             <Typography
               variant="caption"
               fontSize={_700 ? "1.1rem" : "1rem"}
               color={darkMode ? "white" : "GrayText"}
             >
-              1 Comment.
+              {e ? `${e.comments.length} Comments` : "y Comments"}
             </Typography>
           </Stack>
         </Stack>
