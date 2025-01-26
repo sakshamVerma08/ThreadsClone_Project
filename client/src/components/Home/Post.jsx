@@ -1,19 +1,35 @@
 import { Stack, Typography, useMediaQuery } from "@mui/material";
 import { IoIosMenu } from "react-icons/io";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PostOne from "./Post/PostOne";
 import PostTwo from "./Post/PostTwo";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMyMenu } from "../../redux/slice";
+import { addPostId, toggleMyMenu } from "../../redux/slice";
 
 const Post = ({ e }) => {
-  const { darkMode } = useSelector((state) => state.service);
+  const { darkMode, myInfo } = useSelector((state) => state.service);
 
   const dispatch = useDispatch();
+
   const handleOpenMenu = (event) => {
+    dispatch(addPostId(e._id));
     dispatch(toggleMyMenu(event.currentTarget));
   };
+
+  const [isAdmin, setIsAdmin] = useState();
+  const checkIsAdmin = () => {
+    if (e?.admin._id === myInfo._id) {
+      setIsAdmin(true);
+    }
+    setIsAdmin(false);
+  };
+
+  useEffect(() => {
+    if (e && myInfo) {
+      checkIsAdmin();
+    }
+  }, [e, myInfo]);
 
   const _300 = useMediaQuery("(min-width:300px)");
   const _340 = useMediaQuery("(min-width:340px)");
@@ -38,8 +54,8 @@ const Post = ({ e }) => {
         }}
       >
         <Stack gap={_700 ? 2 : 1} flexDirection={"row"}>
-          <PostOne />
-          <PostTwo />
+          <PostOne e={e} />
+          <PostTwo e={e} />
         </Stack>
 
         <Stack
@@ -65,7 +81,12 @@ const Post = ({ e }) => {
           ) : (
             ""
           )}
-          <IoIosMenu size={_700 ? 28 : 20} onClick={handleOpenMenu} />
+
+          {isAdmin ? (
+            <IoIosMenu size={_700 ? 28 : 20} onClick={handleOpenMenu} />
+          ) : (
+            <IoIosMenu size={_700 ? 28 : 20}  />
+          )}
         </Stack>
       </Stack>
     </>

@@ -13,15 +13,21 @@ import { Link, Outlet, useMatch, useParams } from "react-router-dom";
 import Threads from "./Threads";
 import Replies from "./Replies";
 import Repost from "./Repost";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editProfileModal } from "../../../redux/slice";
 import { useUserDetailsQuery } from "../../../redux/service";
+import Loading from "../../../components/common/Loading";
 
 const Profilelayout = () => {
   const dispatch = useDispatch();
+
   const handleOpenEditModal = () => {
     dispatch(editProfileModal(true));
   };
+
+  const { myInfo } = useSelector((state) => state.service);
+  console.log(myInfo);
+
   const _768 = useMediaQuery("(min-width:768)");
   const _615 = useMediaQuery("(min-width:615px)");
   const _539 = useMediaQuery("(min-width:539px)");
@@ -29,6 +35,12 @@ const Profilelayout = () => {
   const _300 = useMediaQuery("(max-width:300px)");
   const params = useParams();
   const data = useUserDetailsQuery(params.id);
+
+  if (!myInfo || !myInfo.me) {
+    return <Loading />;
+  }
+  const { username, profilePic } = myInfo.me;
+
   return (
     <div id="profileContainer">
       <Stack
@@ -57,8 +69,8 @@ const Profilelayout = () => {
             fontSize={_529 ? "100 %" : "2vw"}
           >
             {/* {_768 ? <h1>Saksham Verma</h1> : <h2>Saksham Verma</h2>} */}
-            <h1>Saksham Verma</h1>
-            <span>sakshamxx2769</span>
+            <h1>{username}</h1>
+            <span>{username}</span>
           </Stack>
 
           <Avatar sx={{ scale: _768 ? 2 : 1.5 }} />
