@@ -96,6 +96,7 @@ export const serviceApi = createApi({
       invalidatesTags: (result, error, { id }) => [{ type: "User", id }],
     }),
 
+    // GETS THE INFORMATION OF ALL POSTS
     allPosts: builder.query({
       query: (page) => ({
         url: `post?page=${page}`,
@@ -161,6 +162,7 @@ export const serviceApi = createApi({
       invalidatesTags: (result, error, { id }) => [{ type: "Post", id }],
     }),
 
+    // GETS THE INFORMATION OF A SINGLE POST 
     singlePost: builder.query({
       query: (id) => ({
         url: `post/${id}`,

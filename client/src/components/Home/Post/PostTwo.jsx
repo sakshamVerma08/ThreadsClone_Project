@@ -1,19 +1,62 @@
 import { Grid2, Stack, Typography, useMediaQuery } from "@mui/material";
 import { FaRegHeart, FaRegComment, FaRetweet } from "react-icons/fa6";
 import { IoMdSend } from "react-icons/io";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useLikePostMutation, useRepostMutation } from "../../../redux/service";
 
-const PostTwo = () => {
+const PostTwo = ({ e }) => {
   /* video defined break points */
+
   const _300 = useMediaQuery("(min-width:300px)");
   const _400 = useMediaQuery("(min-width:400px)");
   const _500 = useMediaQuery("(min-width:500px)");
   const _801 = useMediaQuery("(min-width: 801px )");
   const _700 = useMediaQuery("(min-width:700px)");
 
-  const { darkMode } = useSelector((state) => state.service);
+  const { darkMode, myInfo } = useSelector((state) => state.service);
+  const [isLiked, setIsLiked] = useState(null);
+
+  // USING THE API'S
+  const [likePost] = useLikePostMutation();
+  const [repost, repostData] = useRepostMutation();
+
+  const handleLikes = async () => {
+    await likePost(e._id);
+  };
+
+  const checkIsLiked = () => {
+    if (e?.likes.length > 0) {
+      const variable = e.likes.filter((ele) => ele._id === myInfo._id);
+      if (variable.length > 0) {
+        setIsLiked(true);
+        return;
+      }
+    }
+
+    setIsLiked(false);
+  };
+
+  const handleRepost = async () => {
+    await repost(e?._id);
+  };
+
+  useEffect(() => {
+    if (repostData.isSuccess) {
+      console.log("repost data:", repostData.data);
+    }
+
+    if (repostData.isError) {
+      console.log("repost data:", repostData.error.data);
+    }
+  }, [repostData.isSuccess, repostData.isError]);
+
+  // useEffect used just to print 'e', for development purpose
+  useEffect(() => {
+    console.log(e);
+  }, [e]);
+
 
   return (
     <>
@@ -38,17 +81,17 @@ const PostTwo = () => {
               fontSize={_300 ? "1rem" : "0.8rem"}
               fontWeight={500}
             >
-              Saksham Verma
+              {e ? e.admin.username : ""}
             </Typography>
 
-            <Link to="/post/2" className="link">
+            <Link to={`/post/${e?._id}`} className="link">
               <Typography
                 className={darkMode ? "mode" : ""}
                 fontWeight={
                   _700 ? "1.2rem" : _400 ? "1rem" : _300 ? "0.9rem" : "0.8rem"
                 }
               >
-                Open Post from Here !
+                {e ? e.text : ""}
               </Typography>
             </Link>
           </Stack>

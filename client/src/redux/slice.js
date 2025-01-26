@@ -50,7 +50,7 @@ export const serviceSlice = createSlice({
         return;
       }
       const existingPosts = [...state.allPosts];
-      newPostArr.forEach((e) => {
+      newPostArray.forEach((e) => {
         const existingIndex = existingPosts.findIndex((i) => {
           return i._id === e._id;
         });
