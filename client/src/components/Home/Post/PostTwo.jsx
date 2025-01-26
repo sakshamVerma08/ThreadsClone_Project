@@ -57,7 +57,6 @@ const PostTwo = ({ e }) => {
     console.log(e);
   }, [e]);
 
-
   return (
     <>
       <Stack
