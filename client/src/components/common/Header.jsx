@@ -1,5 +1,5 @@
 import { Grid, Grid2, Stack, useMediaQuery } from "@mui/material";
-import { CiMenuBurger } from "react-icons/ci";
+import { CiMenuBurger, CiMenuFries } from "react-icons/ci";
 
 import React from "react";
 import Navbar from "./Navbar";

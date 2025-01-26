@@ -25,4 +25,5 @@ dist-ssr
 
 
 #Exclude server folder
-server/
+node_modules/
+server/node_modules

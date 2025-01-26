@@ -11,6 +11,7 @@ export const serviceSlice = createSlice({
     myInfo: null,
     user: {},
     allPosts: [],
+    postId: null,
   },
   reducers: {
     addPostModal: (state, actions) => {
@@ -62,11 +63,34 @@ export const serviceSlice = createSlice({
 
       state.allPosts = existingPosts;
     },
+
+    addSingle: (state, actions) => {
+      let newArr = [...state.allPosts];
+      let updatedArr = [actions.payload.newPost, ...newArr];
+      let uniqueArr = new Set();
+      let uniquePosts = updatedArr.filter((e) => {
+        if (!uniqueArr.has(e._id)) {
+          uniqueArr.add(e);
+          return true;
+        }
+        return false;
+      });
+
+      state.allPosts = [...uniquePosts];
+    },
+
+    deleteThePost: (state, actions) => {
+      let postArr = [...state.allPosts];
+      let newArr = postArr.filter((e) => e._id !== state.postId);
+      state.allPosts = newArr;
+    },
   },
 });
 
 export const {
   addPostModal,
+  deleteThePost,
+  addSingle,
   editProfileModal,
   toggleMainMenu,
   toggleMyMenu,
