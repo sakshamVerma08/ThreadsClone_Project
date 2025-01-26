@@ -7,7 +7,7 @@ import PostTwo from "./Post/PostTwo";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMyMenu } from "../../redux/slice";
 
-const Post = () => {
+const Post = ({ e }) => {
   const { darkMode } = useSelector((state) => state.service);
 
   const dispatch = useDispatch();

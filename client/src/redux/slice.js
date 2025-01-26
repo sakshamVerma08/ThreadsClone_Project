@@ -12,6 +12,7 @@ export const serviceSlice = createSlice({
     user: {},
     allPosts: [],
     postId: null,
+    searchedUsers: [],
   },
   reducers: {
     addPostModal: (state, actions) => {
@@ -84,11 +85,21 @@ export const serviceSlice = createSlice({
       let newArr = postArr.filter((e) => e._id !== state.postId);
       state.allPosts = newArr;
     },
+
+    addToSearchedUsers: (state, actions) => {
+      state.searchedUsers = actions.payload;
+    },
+
+    addPostId: (state, actions) => {
+      state.postId = actions.payload;
+    },
   },
 });
 
 export const {
   addPostModal,
+  addPostId,
+  addToSearchedUsers,
   deleteThePost,
   addSingle,
   editProfileModal,

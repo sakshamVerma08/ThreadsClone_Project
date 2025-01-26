@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { addMyInfo, addToAllPosts } from "./slice";
+import { addMyInfo, addToAllPosts, deleteThePost } from "./slice";
 
 export const serviceApi = createApi({
   reducerPath: "serviceApi",
@@ -145,13 +145,65 @@ export const serviceApi = createApi({
       }),
       async onQueryStarted(params, { dispatch, queryFulfilled }) {
         try {
-
-          const {data} = await queryFulfilled;
-          dispatch();
+          const { data } = await queryFulfilled;
+          dispatch(deleteThePost(data));
         } catch (err) {
           console.log(err);
         }
       },
+    }),
+
+    likePost: builder.mutation({
+      query: (id) => ({
+        url: `post/like/${id}`,
+        method: "PUT",
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: "Post", id }],
+    }),
+
+    singlePost: builder.query({
+      query: (id) => ({
+        url: `post/${id}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, { id }) => [{ type: "Post", id }],
+    }),
+
+    repost: builder.mutation({
+      query: (id) => ({
+        url: `repost/${id}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    addComment: builder.mutation({
+      query: ({ id, ...data }) => ({
+        url: `comment/${id}`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    deleteComment: builder.mutation({
+      query: ({ postId, id }) => ({
+        url: `comment/${postId}/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, { postId }) => [
+        { type: "Post", id: postId },
+      ],
+    }),
+
+    updateProfile: builder.mutation({
+      query: (data) => ({
+        url: `update`,
+        method: "PUT",
+        body: data,
+      }),
+
+      invalidatesTags: ["Me"],
     }),
   }),
 });
@@ -163,6 +215,14 @@ export const {
   useLogoutMeMutation,
   useUserDetailsQuery,
   useSearchUsersQuery,
-  useAllPostQuery,
   useFollowUserMutation,
+  useAllPostsQuery,
+  useAddPostsQuery,
+  useDeletePostMutation,
+  useLikePostMutation,
+  useSinglePostQuery,
+  useRepostMutation,
+  useAddCommentMutation,
+  useDeleteCommentMutation,
+  useUpdateProfileMutation,
 } = serviceApi;
