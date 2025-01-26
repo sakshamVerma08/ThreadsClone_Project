@@ -27,7 +27,6 @@ const Profilelayout = () => {
 
   const { myInfo } = useSelector((state) => state.service);
   console.log(myInfo);
-
   const _768 = useMediaQuery("(min-width:768)");
   const _615 = useMediaQuery("(min-width:615px)");
   const _539 = useMediaQuery("(min-width:539px)");
@@ -39,7 +38,7 @@ const Profilelayout = () => {
   if (!myInfo || !myInfo.me) {
     return <Loading />;
   }
-  const { username, profilePic } = myInfo.me;
+  const { username, profilePic, bio } = myInfo.me;
 
   return (
     <div id="profileContainer">
@@ -69,20 +68,21 @@ const Profilelayout = () => {
             fontSize={_529 ? "100 %" : "2vw"}
           >
             {/* {_768 ? <h1>Saksham Verma</h1> : <h2>Saksham Verma</h2>} */}
-            <h1>{username}</h1>
+            {_768 ? <h1>{username}</h1> : <h2>{username}</h2>}
             <span>{username}</span>
           </Stack>
 
-          <Avatar sx={{ scale: _768 ? 2 : 1.5 }} />
+          <Avatar
+            sx={{ scale: _768 ? 2 : 1.5 }}
+            src={profilePic ? profilePic : ""}
+          />
         </Stack>
         {/* first row ends*/}
 
         {/*Stack for Bio*/}
         <Stack flexDirection={"row"} width={"100%"} p={1}>
           <Stack flexDirection={"column"}>
-            <span>Lorem ipsum dolor sit amet.</span>
-            <span>Lorem ipsum dolor, sit amet consectetur adipisicing.</span>
-            <span>Lorem ipsum dolor sit amet consectetur.</span>
+            <span>{bio ? bio : "Lorem Ipsum Dolor"}</span>
           </Stack>
         </Stack>
         {/*Stack for Bio Ends*/}

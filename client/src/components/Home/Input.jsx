@@ -6,9 +6,11 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPostModal } from "../../redux/slice";
 const Input = () => {
+  const { myInfo } = useSelector((state) => state.service);
+  console.log("myinfo=", myInfo);
   const dispatch = useDispatch();
   const handleAddPost = () => {
     dispatch(addPostModal(true));
@@ -31,7 +33,10 @@ const Input = () => {
             onClick={handleAddPost}
           >
             <Stack flexDirection={"row"} alignItems={"center"} gap={2}>
-              <Avatar src="" alt="aj    " />
+              <Avatar
+                src={myInfo ? myInfo.profilePic : ""}
+                alt={myInfo ? myInfo.profilePic : ""}
+              />
               <Typography color={"GrayText"}>Start a thread...</Typography>
             </Stack>
             <Button

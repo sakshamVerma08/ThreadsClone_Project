@@ -71,13 +71,13 @@ export const serviceApi = createApi({
         }
       },
 
-      async onQueryStarted(params, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-        } catch (err) {
-          console.log("Err:", err);
-        }
-      },
+      // async onQueryStarted(params, { dispatch, queryFulfilled }) {
+      //   try {
+      //     const { data } = await queryFulfilled;
+      //   } catch (err) {
+      //     console.log("Err:", err);
+      //   }
+      // },
     }),
 
     searchUsers: builder.query({
@@ -162,7 +162,7 @@ export const serviceApi = createApi({
       invalidatesTags: (result, error, { id }) => [{ type: "Post", id }],
     }),
 
-    // GETS THE INFORMATION OF A SINGLE POST 
+    // GETS THE INFORMATION OF A SINGLE POST
     singlePost: builder.query({
       query: (id) => ({
         url: `post/${id}`,

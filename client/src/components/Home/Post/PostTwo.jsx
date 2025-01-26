@@ -1,5 +1,5 @@
 import { Grid2, Stack, Typography, useMediaQuery } from "@mui/material";
-import { FaRegHeart, FaRegComment, FaRetweet } from "react-icons/fa6";
+import { FaRegHeart, FaRegComment, FaRetweet, FaHeart } from "react-icons/fa6";
 import { IoMdSend } from "react-icons/io";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -23,6 +23,11 @@ const PostTwo = ({ e }) => {
   const [repost, repostData] = useRepostMutation();
 
   const handleLikes = async () => {
+    if (isLiked) {
+      setIsLiked(false);
+    } else {
+      setIsLiked(true);
+    }
     await likePost(e._id);
   };
 
@@ -116,9 +121,25 @@ const PostTwo = ({ e }) => {
         {/* Like / share icons 'stack' starts here*/}
         <Stack flexDirection={"column"} gap={1} pt={3}>
           <Stack flexDirection={"row"} gap={4} m={1}>
-            <FaRegHeart size={_700 ? 32 : _300 ? 28 : 24} />
-            <FaRegComment size={_700 ? 32 : _300 ? 28 : 24} />
-            <FaRetweet size={_700 ? 32 : _300 ? 28 : 24} />
+            {isLiked ? (
+              <FaHeart
+                size={_700 ? 32 : _300 ? 28 : 24}
+                onClick={handleLikes}
+              />
+            ) : (
+              <FaRegHeart
+                size={_700 ? 32 : _300 ? 28 : 24}
+                onClick={handleLikes}
+              />
+            )}
+
+            <Link to={`/post/${e?._id}#comment`} className="link">
+              <FaRegComment size={_700 ? 32 : _300 ? 28 : 24} />
+            </Link>
+            <FaRetweet
+              onClick={handleRepost}
+              size={_700 ? 32 : _300 ? 28 : 24}
+            />
             <IoMdSend size={_700 ? 32 : _300 ? 28 : 24} />
           </Stack>
           <Stack
@@ -128,20 +149,37 @@ const PostTwo = ({ e }) => {
             top={-3}
             left={4}
           >
-            <Typography
-              variant="caption"
-              fontSize={_700 ? "1.1rem" : "1rem"}
-              color={darkMode ? "white" : "GrayText"}
-            >
-              {e ? `${e.likes.length} Likes` : "x Likes"}
-            </Typography>
-            <Typography
-              variant="caption"
-              fontSize={_700 ? "1.1rem" : "1rem"}
-              color={darkMode ? "white" : "GrayText"}
-            >
-              {e ? `${e.comments.length} Comments` : "y Comments"}
-            </Typography>
+            {e ? (
+              e.likes.length > 0 ? (
+                <Typography
+                  variant="caption"
+                  fontSize={_700 ? "1.1rem" : "1rem"}
+                  color={darkMode ? "white" : "GrayText"}
+                >
+                  {`${e.likes.length} Likes`}
+                </Typography>
+              ) : (
+                ""
+              )
+            ) : (
+              ""
+            )}
+
+            {e ? (
+              e.comments.length > 0 ? (
+                <Typography
+                  variant="caption"
+                  fontSize={_700 ? "1.1rem" : "1rem"}
+                  color={darkMode ? "white" : "GrayText"}
+                >
+                  {`${e.comments.length} Comments`}
+                </Typography>
+              ) : (
+                ""
+              )
+            ) : (
+              ""
+            )}
           </Stack>
         </Stack>
       </Stack>
